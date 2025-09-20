@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magical Birthday Wishes</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+/* ========== Global Styles ========== */
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background: #fdfcf7;
+  color: #3e2c2c;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* Page wrapper */
+.page {
+  display: none;
+  padding: 20px;
+}
+.page.active {
+  display: block;
+  animation: pageFlip 1s ease forwards;
+}
+@keyframes pageFlip {
+  0% { transform: rotateY(90deg); opacity: 0; }
+  100% { transform: rotateY(0deg); opacity: 1; }
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  cursor: pointer;
+  background: linear-gradient(45deg, #d8a7b1, #b6d7a8);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Headings */
+h1,h2 {
+  font-family: 'Dancing Script', cursive;
+  color: #b56576;
+}
+h1, h2 {
+  /* ...existing styles... */
+  margin-top: 60px; /* or adjust as needed */
+}
+
+/* Inputs */
+input, textarea {
+  padding: 10px;
+  margin: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 80%;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+}
+
+/* Fairy lights */
+.fairy-lights {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+.fairy-lights span {
+  width: 8px;
+  height: 8px;
+  background: #ffd700;
+  border-radius: 50%;
+  margin: 0 6px;
+  animation: twinkle 1.5s infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+/* Typewriter */
+.typewriter {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  white-space: pre-wrap;
+  display: inline-block;
+  border-right: 2px solid #555;
+  animation: blink 0.8s infinite;
+}
+.typewriter span {
+  opacity: 0;
+  display: inline-block;
+  animation: fadeInChar 0.05s forwards;
+}
+@keyframes fadeInChar {
+  to { opacity: 1; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Garden background */
+.garden {
+  background: linear-gradient(to bottom, #fef9f3, #e6ffe6);
+  position: relative;
+}
+.garden::before {
+  content: "🌸🌹🌼🌷";
+  font-size: 2rem;
+  position: absolute;
+  top: 10px; left: 10px;
+  animation: float 6s infinite linear;
+}
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
+}
+.translucent {
+  opacity: 0.25;
+  position: absolute;
+  width: 200px;
+  border-radius: 8px;
+}
+
+/* Storybook Page Flip */
+.page {
+  transform-origin: left center;
+  backface-visibility: hidden;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+.page.active {
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+.page.turning {
+  transform: rotateY(-180deg);
+  opacity: 0;
+}
+
+/* 🌌 Shooting Stars */
+@keyframes shoot {
+  0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateX(-300px) translateY(300px) scale(0.5); opacity: 0; }
+}
+.shooting-star {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  animation: shoot 2s linear infinite;
+  opacity: 0.7;
+}
+
+/* 🌌 Starry Background (behind pages) */
+.starry-bg {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: url('your-stars.png') repeat;
+  z-index: -1;
+  animation: shimmer 60s linear infinite;
+}
+@keyframes shimmer {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
+.sparkle {
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(white, #ffccff);
+  border-radius: 50%;
+  animation: sparkleTwinkle 1.5s infinite alternate;
+  position: absolute;
+}
+@keyframes sparkleTwinkle {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.3); }
+}
+
+/* ===== Mobile Responsive Adjustments ===== */
+@media screen and (max-width: 768px) {
+  .page { padding: 10px; }
+  input, textarea { width: 95% !important; font-size: 1rem !important; }
+  .btn { font-size: 1.1rem !important; padding: 10px 18px !important; }
+  .fairy-lights { margin: 8px 0 !important; }
+  .translucent { width: 120px !important; }
+  .typewriter { font-size: 1.2rem !important; }
+  h1, h2 { font-size: 1.5rem !important; }
+}
+@media screen and (max-width: 480px) {
+  .btn { font-size: 1rem !important; padding: 8px 14px !important; }
+  .translucent { width: 100px !important; }
+  h1, h2 { font-size: 1.2rem !important; }
+  .typewriter { font-size: 1rem !important; }
+}
+
+/* Page background */
+.page {
+  background: url('images/back.jpg') no-repeat center top;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+.page::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 0;
+}
+.page > * { position: relative; z-index: 1; }
+
+/* 🎨 Fantasy Gallery Wall - Auto-sized Frames */
+#polaroid-frame {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  padding: 20px;
+}
+
+.polaroid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border: 5px solid #e3c77c; /* golden fantasy frame */
+  border-radius: 12px;
+  background: #fffaf0;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25),
+              0 0 20px rgba(227,199,124,0.6);
+  transform: rotate(var(--rotation, 0deg));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100%;
+}
+
+.polaroid img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  height: auto;
+  object-fit: contain; /* shows full photo, no cropping */
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(var(--rotation, 0deg));
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35),
+              0 0 35px rgba(227,199,124,0.9);
+}
+
+/* 📜 Fantasy Message Box */
+.message-box {
+  max-width: 90%;
+  margin: 20px auto;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.8); /* translucent white */
+  border: 3px solid #e3c77c; /* golden fantasy border */
+  border-radius: 16px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  color: #4a2c2a; /* deep brown for readability */
+  line-height: 1.6;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25),
+              0 0 20px rgba(227, 199, 124, 0.6);
+  position: relative;
+  z-index: 2;
+}
+
+.message-box::before {
+  content: "✨";
+  font-size: 1.5rem;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fffaf5;
+  padding: 0 6px;
+  border-radius: 50%;
+}
+#polaroid-frame {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 6px; /* tighter spacing like your example */
+  justify-items: center;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 500px;
+}
+
+#polaroid-frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* keeps full image visible */
+  border-radius: 4px;  /* optional, can remove if you want sharp edges */
+  box-shadow: none;    /* no shadow, pure pics */
+  padding: 0;          /* no border/polaroid padding */
+  background: none;
+}
+.special-note-box {
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  font-family: 'Cursive', 'Segoe UI';
+  font-size: 16px;
+  color: #2e7a5092;
+}
+.fairy-lights-row {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  height: 180px;
+  z-index: 2;
+}
+.fairy-rope {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-top: 4px dashed #ffd700;
+  z-index: 1;
+}
+.hanging-photos {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  z-index: 2;
+}
+.hanging-polaroid {
+  width: 90px;
+  height: 110px;
+  background: #fff;
+  border: 3px solid #e3c77c;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: swing 3s infinite ease-in-out alternate;
+  transform-origin: top center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.hanging-polaroid img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 7px;
+  margin-top: 7px;
+}
+.hanging-string {
+  width: 2px;
+  height: 30px;
+  background: #bfae6a;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 2px;
+}
+@keyframes swing {
+  0% { transform: rotate(-7deg);}
+  50% { transform: rotate(7deg);}
+  100% { transform: rotate(-7deg);}
+}
+
+/* Floating Polaroids */
+.floating-polaroids {
+  position: absolute;
+  left: 0; right: 0;
+  top: 220px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.floating-polaroid {
+  position: absolute;
+  width: 80px;
+  height: 90px;
+  background: #fff;
+  border: 2px solid #e3c77c;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  animation: floatUp 8s linear infinite;
+  will-change: transform;
+}
+.floating-polaroid img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(-10deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-80px) rotate(10deg) scale(1.07);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-180px) rotate(-8deg) scale(1);
+    opacity: 0;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========== Landing Page ========== -->
+<div id="landing-page" class="page active">
+  <h1>📖 Choose Your Path</h1>
+  <button class="btn" id="people-btn">People of Harshini 👯</button>
+  <button class="btn" id="birthday-btn">Birthday Baby 🎂</button>
+</div>
+
+<!-- ========== People Page ========== -->
+<div id="people-page" class="page">
+  <h2>📔 Lovingly Tale</h2>
+  
+  <!-- Wish Form -->
+  <form id="wish-form">
+    <input id="sender-name" placeholder="Your Name" required><br>
+    <textarea id="birthday-message" placeholder="Write your wishes here…" required></textarea><br>
+    <button type="submit" class="btn">Send Wish</button>
+  </form>
+
+  <!-- Back Button -->
+  <button class="btn" type="button" onclick="showPage('landing')">Back</button>
+</div>
+
+<!-- ========== Thank You Page ========== -->
+<div id="thanks-page" class="page">
+  <h2>Thanks for your wish ❤</h2>
+  <p>(Diary closes 💌)</p>
+  <button class="btn" onclick="showPage('landing')">Back Home</button>
+</div>
+
+<!-- ========== Secret Key Page ========== -->
+<div id="birthday-page" class="page">
+  <h2>🔑 Enter Secret Key</h2>
+  <form id="secret-form">
+    <input id="secret-key" placeholder="Secret Key"><br>
+    <button type="submit" class="btn">Unlock 🎁</button>
+  </form>
+  <button class="btn" type="button" onclick="showPage('landing')">Back</button>
+</div>
+
+
+<!-- ========== Celebration Page ========== -->
+<div id="celebration-page" class="page">
+  <h1>☁ Happy Birthday Pichii 💖 ☁</h1>
+  <div class="fairy-lights-row">
+    <div class="fairy-rope"></div>
+    <div class="hanging-photos">
+      <!-- Hanging polaroids will be injected here -->
+    </div>
+  </div>
+  <div class="floating-polaroids">
+    <!-- Floating polaroids will be injected here -->
+  </div>
+  <button class="btn" id="show-messages-btn">Here are some messages from your loved ones ✨</button>
+</div>
+
+<!-- ========== Messages Page (storybook) ========== -->
+<div id="messages-page" class="page">
+  <h2>📖 Wishes for Harshini</h2>
+
+  <!-- Polaroid Wall -->
+  <div id="polaroid-frame"></div>
+
+  <!-- Message Display -->
+  <div id="message-content">
+    <div class="fairy-lights"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="message-box" id="message-box">
+      <p id="message-text"></p>
+      <p id="message-sender" style="font-weight:bold; margin-top:10px;"></p>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <button class="btn" id="prev-message-btn">Prev</button>
+  <button class="btn" id="next-message-btn">Next</button>
+  <button class="btn" id="final-btn" style="display:none;">One Last Message 💌</button>
+</div>
+
+<!-- ========== Special Note Page ========== -->
+<div id="special-note-page" class="page">
+  <h2>💫 Special Note</h2>
+
+  <div class="special-note-box" id="special-note-box">
+    <p id="special-note-text"></p>
+    <p id="special-note-sender" style="font-weight:bold; margin-top:10px;"></p>
+    <h1>ONCE AGAIN <br>HAPPY BIRTHDAY PICHUU</h1>
+  </div>
+
+  <button class="btn" type="button" onclick="showPage('landing')">Back</button>
+</div>
+
+
+<!-- Firebase SDK (v8 for compatibility) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDvJF5VoOXOOPobZ1r78AIWE5NbM2dZeiM",
+  authDomain: "harshini-s-birthday.firebaseapp.com",
+  projectId: "harshini-s-birthday",
+  storageBucket: "harshini-s-birthday.appspot.com",
+  messagingSenderId: "40081991447",
+  appId: "1:40081991447:web:3f80ed070f01abd7def952",
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// --- Hanging and Floating Polaroids for Celebration Page ---
+const celebrationHangingPics = [
+  'images/fro1.jpg','images/fro2.jpg','images/fro3.jpg','images/fro4.jpg','images/fro5.jpg'
+];
+const celebrationFloatingPics = [
+  'images/ba1.jpg','images/ba3.jpg','images/ba5.jpg','images/ba4.jpg','images/ba2.jpg'
+];
+
+// Hanging Polaroids
+const hangingPhotosDiv = document.querySelector('#celebration-page .hanging-photos');
+hangingPhotosDiv.innerHTML = '';
+celebrationHangingPics.forEach((src, i) => {
+  const polaroid = document.createElement('div');
+  polaroid.className = 'hanging-polaroid';
+  polaroid.style.animationDelay = (i * 0.7) + 's';
+  // String
+  const string = document.createElement('div');
+  string.className = 'hanging-string';
+  polaroid.appendChild(string);
+  // Image
+  const img = document.createElement('img');
+  img.src = src;
+  polaroid.appendChild(img);
+  hangingPhotosDiv.appendChild(polaroid);
+});
+
+// Floating Polaroids
+const floatingPolaroidsDiv = document.querySelector('#celebration-page .floating-polaroids');
+floatingPolaroidsDiv.innerHTML = '';
+celebrationFloatingPics.forEach((src, i) => {
+  const polaroid = document.createElement('div');
+  polaroid.className = 'floating-polaroid';
+  polaroid.style.left = (10 + i*18) + '%';
+  polaroid.style.animationDelay = (i * 2) + 's';
+  const img = document.createElement('img');
+  img.src = src;
+  polaroid.appendChild(img);
+  floatingPolaroidsDiv.appendChild(polaroid);
+});
+// 📸 Polaroid Wall for People Page
+const polaroidPics = [
+  'images/pmc1.jpg','images/me1.jpg','images/surv.jpg', 'images/pmc2.jpg','images/subi1.jpg', 'images/pmc3.jpg','images/vid.jpg', 'images/pmc4.jpg', 'images/me2.jpg', 'images/jai.jpg', 'images/fam.jpg', 'images/subi2.jpg'
+  // 👉 replace with your 20 fantasy photos
+];
+
+const polaroidFrame = document.getElementById('polaroid-frame');
+
+polaroidPics.forEach(src => {
+  const div = document.createElement('div');
+  div.className = 'polaroid';
+  div.style.setProperty('--rotation', (Math.random() * 10 - 5) + 'deg');
+  
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {
+    if (img.naturalWidth > img.naturalHeight) {
+      img.style.maxWidth = "120px";
+      img.style.maxHeight = "90px";
+    } else {
+      img.style.maxWidth = "90px";
+      img.style.maxHeight = "120px";
+    }
+  };
+
+  div.appendChild(img);
+  polaroidFrame.appendChild(div);
+});
+
+
+document.getElementById('people-btn').onclick = () => showPage('people');
+document.getElementById('birthday-btn').onclick = () => showPage('birthday');
+function showPage(pageId) {
+  const current = document.querySelector('.page.active');
+  if(current) {
+    current.classList.add('turning');
+    setTimeout(() => {
+      current.classList.remove('active', 'turning');
+      document.getElementById(pageId + "-page").classList.add('active');
+    }, 500); // animation duration
+  } else {
+    document.getElementById(pageId + "-page").classList.add('active');
+  }
+}
+
+
+document.getElementById('wish-form').onsubmit = async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('sender-name').value;
+  const message = document.getElementById('birthday-message').value;
+  await db.collection("wishes").add({ name, message });
+   const heart = document.createElement('img');
+  heart.src = 'love.png'; // REPLACE with your heart image
+  heart.id = 'heart-stamp';
+  document.getElementById('people-page').appendChild(heart);
+  setTimeout(() => heart.remove(), 1000);
+  showPage("thanks");
+};
+
+document.getElementById('secret-form').onsubmit = (e) => {
+  e.preventDefault();
+  const key = document.getElementById('secret-key').value.trim();
+  if(key === "Dr.Harshini") showPage("celebration");
+  else alert("Wrong key!");
+};
+
+let wishes = [], currentIndex = 0;
+document.getElementById('show-messages-btn').onclick = async () => {
+  const snap = await db.collection("wishes").get();
+  wishes = snap.docs.map(d => d.data());
+  if(wishes.length) {
+    currentIndex = 0;
+    displayMessage();
+    showPage("messages");
+  } else alert("No wishes yet!");
+};
+function displayMessage() {
+  const msg = wishes[currentIndex];
+  document.getElementById('message-text').textContent = msg ? msg.message : "";
+  document.getElementById('message-sender').textContent = msg ? `– ${msg.name}` : "";
+  document.getElementById('final-btn').style.display = (currentIndex === wishes.length - 1) ? "block" : "none";
+}
+
+document.getElementById('prev-message-btn').onclick = () => {
+  if(currentIndex > 0) { currentIndex--; displayMessage(); }
+};
+document.getElementById('next-message-btn').onclick = () => {
+  if(currentIndex < wishes.length-1) { currentIndex++; displayMessage(); }
+};
+document.getElementById('final-btn').onclick = () => {
+  showPage("special-note");
+  typeWriterEffect(document.getElementById("special-note-text"), "Pichii 💕, The one who keeps the best version of me alive… who always believes in me, supports me, and loves me no matter what. This little girl just hit 20!! 🎉 stepping into adulthood. Crazy right? Feels unreal for me too. You honestly deserve all the happiness and peace this world can give. And you know what? This long distance… it really hit me. Made me realize how incomplete I am without you. Showed me how damn strong our connection actually is. Maybe that’s why God planned this just to make our bond even stronger 💫. In a world full of people who treat me like an option, you’re the one who always made me feel valued, prioritized, and loved. You’re not just my person, you’re my family❤️.Life’s unpredictable anything can happen anytime. Even if someday I’m not around, I know my strong girl will handle everything bravely, smartly, and take care of herself. You’re gonna be that amazing doctor 👩‍⚕️ everyone looks up to. You’ll reach great heights with or without me. I'll be cheering up for you wherever I am. Remember you should never ever doubt your worth and never drop your self-respect for anyone. Doesn’t matter how important they are nobody’s worth that. Keep your head up always, ‘cause you’re too precious for this world ✨. God will always give you best things at the right time, he knows what and when his girl needs something andI've made a special contract with him to give the best to my pichii and protect her. This note is just to remind you that you’re loved, more than you can ever imagine, by so many people. And me? I love you beyond everything… forever and always 💖. ", 50);
+};
+function typeWriterEffect(element, text, speed=50) {
+  element.innerHTML = ""; // clear
+  let i=0;
+  function typing() {
+    if(i < text.length) {
+      const span = document.createElement('span');
+      span.textContent = text.charAt(i);
+      element.appendChild(span);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+function createExtraSparkles() {
+  setInterval(() => {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = Math.random() * window.innerWidth + 'px';
+    s.style.top = Math.random() * window.innerHeight + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 2000);
+  }, 400);
+}
+createExtraSparkles();
+const box = document.createElement('div');
+box.className = 'message-box';
+box.innerHTML = `<p>${message}</p><p style="font-weight:bold; margin-top:10px;">– ${name}</p>`;
+document.getElementById('messages-container').appendChild(box);
+
+</script>
+<div class="shooting-star"></div>
+<div class="shooting-star" style="animation-delay:1s; left:60%;"></div>
+<div class="shooting-star" style="animation-delay:2s; left:30%;"></div>
+</body>
+</html>
