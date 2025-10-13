@@ -473,6 +473,62 @@ input, textarea {
   from { opacity: 0;}
   to { opacity: 1;}
 }
+
+/* Responsive adjustments for mobile screens */
+@media screen and (max-width: 600px) {
+  .page {
+    padding: 8px;
+    min-height: 100vh;
+    width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  #polaroid-frame {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 98vw;
+    max-width: 98vw;
+    margin: 10px auto;
+  }
+  .polaroid {
+    padding: 4px;
+    border-width: 3px;
+    max-width: 98vw;
+  }
+  .polaroid img {
+    max-width: 90vw;
+    max-height: 120px;
+  }
+  .fairy-lights-row {
+    max-width: 98vw;
+    height: 120px;
+  }
+  .hanging-polaroid {
+    width: 60px;
+    height: 70px;
+  }
+  .hanging-polaroid img {
+    width: 50px;
+    height: 50px;
+    margin-top: 4px;
+  }
+  .floating-polaroid {
+    width: 55px;
+    height: 65px;
+  }
+  .floating-polaroid img {
+    width: 45px;
+    height: 45px;
+  }
+  .cake-svg {
+    width: 120px;
+    height: 80px;
+  }
+  #funfact-sparkles-container {
+    min-height: 50px;
+    height: 50px;
+  }
+}
 </style>
 </head>
 <body>
