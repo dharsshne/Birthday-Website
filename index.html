@@ -4,25 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Magical Birthday Wishes</title>
-
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script&display=swap" rel="stylesheet">
-
 <style>
-/* ========== Global Styles ========== */
+:root {
+    --deep-navy: #18153a;
+    --purple: #4c3260;
+    --violet: #6353a3;
+    --mauve: #b86ca2;
+    --pale-lavender: #e7c6e7;
+    --dark-purple: #3a2450;
+}
+html, body {
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  background: #fdfcf7;
-  color: #3e2c2c;
-  overflow-x: hidden;
+  color: var(--pale-lavender);
   text-align: center;
+  min-height: 100vh;
+  background: url('images/back2.jpeg') center center/cover no-repeat fixed,
+              linear-gradient(135deg, var(--deep-navy) 0%, var(--purple) 40%, var(--violet) 70%, var(--mauve) 90%, var(--pale-lavender) 100%);
+  position: relative;
 }
-
-/* Page wrapper */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 60% 30%, var(--pale-lavender) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, var(--mauve) 0%, transparent 70%);
+  opacity: 0.5;
+}
 .page {
   display: none;
   padding: 20px;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  box-sizing: border-box;
+  box-shadow: 0 8px 32px 0 rgba(76,50,96,0.18);
+  border-radius: 18px;
+  margin: 0 auto;
+  z-index: 1;
+  overflow-x: hidden;
 }
 .page.active {
   display: block;
@@ -32,8 +62,6 @@ body {
   0% { transform: rotateY(90deg); opacity: 0; }
   100% { transform: rotateY(0deg); opacity: 1; }
 }
-
-/* Buttons */
 .btn {
   padding: 12px 24px;
   margin: 10px;
@@ -42,38 +70,42 @@ body {
   font-family: 'Dancing Script', cursive;
   font-size: 1.3rem;
   cursor: pointer;
-  background: linear-gradient(45deg, #d8a7b1, #b6d7a8);
-  color: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background: linear-gradient(45deg, var(--violet), var(--mauve));
+  color: var(--deep-navy);
+  font-weight: bold;
+  text-shadow: 0 1px 8px var(--pale-lavender);
+  box-shadow: 0 4px 8px rgba(24,21,58,0.18);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px rgba(24,21,58,0.28);
+  background: linear-gradient(45deg, var(--mauve), var(--violet));
 }
-
-/* Headings */
 h1,h2 {
   font-family: 'Dancing Script', cursive;
-  color: #b56576;
+  color: var(--pale-lavender);
+  margin-top: 60px;
+  text-shadow: 0 2px 12px var(--deep-navy), 0 1px 0 var(--mauve);
 }
 h1, h2 {
-  /* ...existing styles... */
-  margin-top: 60px; /* or adjust as needed */
+  margin-top: 60px;
 }
-
-/* Inputs */
+p, label, .typewriter {
+  color: var(--pale-lavender);
+  text-shadow: 0 1px 8px var(--deep-navy);
+}
 input, textarea {
   padding: 10px;
   margin: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--violet);
   border-radius: 10px;
   width: 80%;
   font-family: 'Dancing Script', cursive;
   font-size: 1.2rem;
+  background: var(--pale-lavender);
+  color: var(--deep-navy);
 }
-
-/* Fairy lights */
 .fairy-lights {
   display: flex;
   justify-content: center;
@@ -82,7 +114,7 @@ input, textarea {
 .fairy-lights span {
   width: 8px;
   height: 8px;
-  background: #ffd700;
+  background: var(--mauve);
   border-radius: 50%;
   margin: 0 6px;
   animation: twinkle 1.5s infinite alternate;
@@ -91,14 +123,12 @@ input, textarea {
   from { opacity: 0.2; }
   to { opacity: 1; }
 }
-
-/* Typewriter */
 .typewriter {
   font-family: 'Dancing Script', cursive;
   font-size: 1.4rem;
   white-space: pre-wrap;
   display: inline-block;
-  border-right: 2px solid #555;
+  border-right: 2px solid var(--purple);
   animation: blink 0.8s infinite;
 }
 .typewriter span {
@@ -109,187 +139,65 @@ input, textarea {
 @keyframes fadeInChar {
   to { opacity: 1; }
 }
-
 @keyframes blink {
   50% { border-color: transparent; }
 }
-
-/* Garden background */
-.garden {
-  background: linear-gradient(to bottom, #fef9f3, #e6ffe6);
-  position: relative;
-}
-.garden::before {
-  content: "🌸🌹🌼🌷";
-  font-size: 2rem;
-  position: absolute;
-  top: 10px; left: 10px;
-  animation: float 6s infinite linear;
-}
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-20px); }
-}
-.translucent {
-  opacity: 0.25;
-  position: absolute;
-  width: 200px;
-  border-radius: 8px;
-}
-
-/* Storybook Page Flip */
-.page {
-  transform-origin: left center;
-  backface-visibility: hidden;
-  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-}
-.page.active {
-  transform: rotateY(0deg);
-  opacity: 1;
-}
-.page.turning {
-  transform: rotateY(-180deg);
-  opacity: 0;
-}
-
-/* 🌌 Shooting Stars */
-@keyframes shoot {
-  0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateX(-300px) translateY(300px) scale(0.5); opacity: 0; }
-}
-.shooting-star {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(white, transparent);
-  animation: shoot 2s linear infinite;
-  opacity: 0.7;
-}
-
-/* 🌌 Starry Background (behind pages) */
-.starry-bg {
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: url('your-stars.png') repeat;
-  z-index: -1;
-  animation: shimmer 60s linear infinite;
-}
-@keyframes shimmer {
-  from { background-position: 0 0; }
-  to { background-position: 1000px 1000px; }
-}
-.sparkle {
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(white, #ffccff);
-  border-radius: 50%;
-  animation: sparkleTwinkle 1.5s infinite alternate;
-  position: absolute;
-}
-@keyframes sparkleTwinkle {
-  0% { opacity: 0; transform: scale(0.3); }
-  50% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.3); }
-}
-
-/* ===== Mobile Responsive Adjustments ===== */
-@media screen and (max-width: 768px) {
-  .page { padding: 10px; }
-  input, textarea { width: 95% !important; font-size: 1rem !important; }
-  .btn { font-size: 1.1rem !important; padding: 10px 18px !important; }
-  .fairy-lights { margin: 8px 0 !important; }
-  .translucent { width: 120px !important; }
-  .typewriter { font-size: 1.2rem !important; }
-  h1, h2 { font-size: 1.5rem !important; }
-}
-@media screen and (max-width: 480px) {
-  .btn { font-size: 1rem !important; padding: 8px 14px !important; }
-  .translucent { width: 100px !important; }
-  h1, h2 { font-size: 1.2rem !important; }
-  .typewriter { font-size: 1rem !important; }
-}
-
-/* Page background */
-.page {
-  background: url('images/back.jpg') no-repeat center top;
-  background-size: cover;
-  min-height: 100vh;
-  width: 100%;
-  position: relative;
-}
-.page::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  pointer-events: none;
-  z-index: 0;
-}
-.page > * { position: relative; z-index: 1; }
-
-/* 🎨 Fantasy Gallery Wall - Auto-sized Frames */
 #polaroid-frame {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   justify-items: center;
-  padding: 20px;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 600px;
+  box-sizing: border-box;
 }
-
 .polaroid {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px;
-  border: 5px solid #e3c77c; /* golden fantasy frame */
+  border: 5px solid var(--mauve);
   border-radius: 12px;
-  background: #fffaf0;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25),
-              0 0 20px rgba(227,199,124,0.6);
+  background: var(--pale-lavender);
+  color: var(--deep-navy);
+  box-shadow: 0 6px 16px rgba(24,21,58,0.18),
+              0 0 20px rgba(184,108,162,0.18);
   transform: rotate(var(--rotation, 0deg));
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 100%;
+  box-sizing: border-box;
 }
-
 .polaroid img {
   max-width: 100%;
   max-height: 100%;
   border-radius: 8px;
   height: auto;
-  object-fit: contain; /* shows full photo, no cropping */
+  object-fit: contain;
 }
-
 .polaroid:hover {
   transform: scale(1.05) rotate(var(--rotation, 0deg));
-  box-shadow: 0 12px 24px rgba(0,0,0,0.35),
-              0 0 35px rgba(227,199,124,0.9);
+  box-shadow: 0 12px 24px rgba(24,21,58,0.28),
+              0 0 35px rgba(184,108,162,0.28);
 }
-
-/* 📜 Fantasy Message Box */
 .message-box {
   max-width: 90%;
   margin: 20px auto;
   padding: 18px 22px;
-  background: rgba(255, 255, 255, 0.8); /* translucent white */
-  border: 3px solid #e3c77c; /* golden fantasy border */
+  background: rgba(231,198,231,0.8);
+  border: 3px solid var(--mauve);
   border-radius: 16px;
   font-family: 'Dancing Script', cursive;
   font-size: 1.2rem;
-  color: #4a2c2a; /* deep brown for readability */
+  color: var(--dark-purple);
   line-height: 1.6;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25),
-              0 0 20px rgba(227, 199, 124, 0.6);
+  box-shadow: 0 6px 18px rgba(24,21,58,0.18),
+              0 0 20px rgba(184,108,162,0.18);
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
-
 .message-box::before {
   content: "✨";
   font-size: 1.5rem;
@@ -297,42 +205,87 @@ input, textarea {
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: #fffaf5;
+  background: var(--pale-lavender);
   padding: 0 6px;
   border-radius: 50%;
 }
-#polaroid-frame {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap: 6px; /* tighter spacing like your example */
-  justify-items: center;
-  margin: 20px auto;
-  width: 95%;
-  max-width: 500px;
-}
-
-#polaroid-frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain; /* keeps full image visible */
-  border-radius: 4px;  /* optional, can remove if you want sharp edges */
-  box-shadow: none;    /* no shadow, pure pics */
-  padding: 0;          /* no border/polaroid padding */
-  background: none;
+#messages-page .message-box,
+#messages-page .message-box p,
+#messages-page .message-box #message-text,
+#messages-page .message-box #message-sender {
+  color: #2a1740 !important;
 }
 .special-note-box {
-  background: rgba(255, 255, 255, 0.7);
-  border: 2px solid #fff;
+  background: rgba(231,198,231,0.7);
+  border: 2px solid var(--mauve);
   border-radius: 15px;
   padding: 20px;
   margin: 20px auto;
   max-width: 90%;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(24,21,58,0.18);
   font-family: 'Cursive', 'Segoe UI';
   font-size: 16px;
-  color: #2e7a5092;
+  color: var(--purple);
+  box-sizing: border-box;
 }
+.special-note-box p#special-note-text {
+  color: var(--deep-navy);
+  font-weight: 500;
+  text-shadow: 0 1px 6px var(--pale-lavender);
+}
+.candle-option {
+  margin: 30px auto 10px auto;
+  text-align: center;
+}
+.candle-svg {
+  width: 40px;
+  height: 80px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+.candle-flame {
+  transition: opacity 0.4s;
+  opacity: 0;
+}
+.candle-flame.lit {
+  opacity: 1;
+  animation: flameFlicker 1s infinite alternate;
+}
+@keyframes flameFlicker {
+  0% { transform: scaleY(1) scaleX(1);}
+  100% { transform: scaleY(1.2) scaleX(0.8);}
+}
+.candle-count {
+  color: var(--violet);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  margin-top: 8px;
+}
+.cake-container {
+  margin: 30px auto 10px auto;
+  text-align: center;
+}
+.cake-svg {
+  width: 180px;
+  height: 120px;
+  display: block;
+  margin: 0 auto;
+}
+.cake-candle-flame {
+  opacity: 1;
+  animation: none !important;
+  transition: none !important;
+}
+@media screen and (max-width: 480px) {
+  .cake-svg { width: 120px; height: 80px; }
+}
+.page {
+  background: none;
+}
+.page > * { position: relative; z-index: 1; }
+/* Fairy Lights Row */
 .fairy-lights-row {
   position: relative;
   width: 100%;
@@ -340,6 +293,7 @@ input, textarea {
   margin: 0 auto 40px auto;
   height: 180px;
   z-index: 2;
+  box-sizing: border-box;
 }
 .fairy-rope {
   position: absolute;
@@ -347,7 +301,7 @@ input, textarea {
   left: 0;
   width: 100%;
   height: 0;
-  border-top: 4px dashed #ffd700;
+  border-top: 4px dashed var(--mauve);
   z-index: 1;
 }
 .hanging-photos {
@@ -358,14 +312,15 @@ input, textarea {
   display: flex;
   justify-content: space-around;
   z-index: 2;
+  box-sizing: border-box;
 }
 .hanging-polaroid {
   width: 90px;
   height: 110px;
-  background: #fff;
-  border: 3px solid #e3c77c;
+  background: var(--pale-lavender);
+  border: 3px solid var(--mauve);
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 12px rgba(24,21,58,0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -374,6 +329,7 @@ input, textarea {
   transform-origin: top center;
   margin-top: 0;
   margin-bottom: 0;
+  box-sizing: border-box;
 }
 .hanging-polaroid img {
   width: 80px;
@@ -385,7 +341,7 @@ input, textarea {
 .hanging-string {
   width: 2px;
   height: 30px;
-  background: #bfae6a;
+  background: var(--purple);
   position: absolute;
   top: -30px;
   left: 50%;
@@ -398,7 +354,6 @@ input, textarea {
   50% { transform: rotate(7deg);}
   100% { transform: rotate(-7deg);}
 }
-
 /* Floating Polaroids */
 .floating-polaroids {
   position: absolute;
@@ -407,21 +362,23 @@ input, textarea {
   width: 100%;
   pointer-events: none;
   z-index: 1;
+  box-sizing: border-box;
 }
 .floating-polaroid {
   position: absolute;
   width: 80px;
   height: 90px;
-  background: #fff;
-  border: 2px solid #e3c77c;
+  background: var(--pale-lavender);
+  border: 2px solid var(--mauve);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(24,21,58,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.85;
   animation: floatUp 8s linear infinite;
   will-change: transform;
+  box-sizing: border-box;
 }
 .floating-polaroid img {
   width: 70px;
@@ -443,13 +400,107 @@ input, textarea {
     opacity: 0;
   }
 }
-
+#thanks-page {
+  color: #2a1740;
+}
+#thanks-page h2,
+#thanks-page p,
+#thanks-page .candle-count,
+#thanks-page .candle-option {
+  color: #2a1740 !important;
+}
+/* Sparkles */
+.sparkle {
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(var(--pale-lavender), var(--mauve));
+  border-radius: 50%;
+  animation: sparkleTwinkle 1.5s infinite alternate;
+  position: absolute;
+  z-index: 10;
+}
+@keyframes sparkleTwinkle {
+  0% { opacity: 0; transform: scale(0.3);}
+  50% { opacity: 1; transform: scale(1);}
+  100% { opacity: 0; transform: scale(0.3);}
+}
+/* Fun Fact Sparkle */
+.funfact-sparkle {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(circle at 60% 40%, #b86ca2 60%, #6353a3 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 18px #b86ca2, 0 0 8px #6353a3;
+  cursor: pointer;
+  animation: funfactFloat 6s infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: transform 0.2s;
+}
+.funfact-sparkle:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 32px #b86ca2, 0 0 16px #6353a3;
+}
+@keyframes funfactFloat {
+  0% { transform: translateY(0);}
+  100% { transform: translateY(-30px);}
+}
+.funfact-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  color: #2a1740;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #6353a3;
+  padding: 24px 32px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  z-index: 9999;
+  min-width: 220px;
+  max-width: 80vw;
+  display: none;
+}
+.funfact-popup.active {
+  display: block;
+  animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
 </style>
 </head>
 <body>
 
+<!-- ========== Welcome Page ========== -->
+<div id="welcome-page" class="page active">
+  <h1 style="margin-top:30px; font-size:2.5rem; color:var(--pale-lavender); text-shadow:0 2px 24px var(--deep-navy);">
+    ✨ Welcome to the Birthday Celebration of Harshini ✨
+  </h1>
+  <div class="fairy-lights" style="margin:30px 0;">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <p style="font-size:1.3rem; color:var(--pale-lavender); margin-bottom:40px; text-shadow:0 1px 8px var(--deep-navy);">
+    Step into a magical world of wishes, memories, and love.<br>
+    Click below to begin your journey!
+  </p>
+  <div id="funfact-section" style="margin:40px 0 0 0;">
+    <h2 style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.4rem;">
+      Wanna know some fun facts about Harshini? Click the sparkles!
+    </h2>
+    <div id="funfact-sparkles-container" style="position:relative;min-height:80px;height:80px;width:100%;margin:20px 0;"></div>
+  </div>
+  <button class="btn" id="start-btn">Begin</button>
+  <div id="funfact-popup" class="funfact-popup"></div>
+</div>
+
 <!-- ========== Landing Page ========== -->
-<div id="landing-page" class="page active">
+<div id="landing-page" class="page">
   <h1>📖 Choose Your Path</h1>
   <button class="btn" id="people-btn">People of Harshini 👯</button>
   <button class="btn" id="birthday-btn">Birthday Baby 🎂</button>
@@ -458,15 +509,11 @@ input, textarea {
 <!-- ========== People Page ========== -->
 <div id="people-page" class="page">
   <h2>📔 Lovingly Tale</h2>
-  
-  <!-- Wish Form -->
   <form id="wish-form">
     <input id="sender-name" placeholder="Your Name" required><br>
     <textarea id="birthday-message" placeholder="Write your wishes here…" required></textarea><br>
     <button type="submit" class="btn">Send Wish</button>
   </form>
-
-  <!-- Back Button -->
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
 </div>
 
@@ -474,9 +521,31 @@ input, textarea {
 <div id="thanks-page" class="page">
   <h2>Thanks for your wish ❤</h2>
   <p>(Diary closes 💌)</p>
-  <button class="btn" onclick="showPage('landing')">Back Home</button>
+  <div class="candle-option">
+    <div id="candleArea">
+      <svg class="candle-svg" id="candleSVG" viewBox="0 0 40 80">
+        <rect x="15" y="30" width="10" height="40" rx="5" fill="#e7c6e7" stroke="#b86ca2" stroke-width="2"/>
+        <rect x="19" y="25" width="2" height="8" fill="#6353a3"/>
+        <ellipse id="candleFlame" class="candle-flame" cx="20" cy="22" rx="5" ry="8" fill="gold" />
+      </svg>
+    </div>
+    <div class="candle-count" id="candleCountText">Candles lighted: <span id="candleCount">0</span></div>
+    <div style="color:#2a1740;font-size:1rem;margin-top:8px;">
+      Light the candle to send your wish!
+    </div>
+    <button class="btn" onclick="showPage('landing')">Back Home</button>
+  </div>
+  <!-- Ask for fun fact after lighting the candle -->
+  <div id="funfact-thanks-section" style="margin:30px 0;">
+    <h3 style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.2rem;">
+      Do you know a fun fact about Harshini? Share it!
+    </h3>
+    <form id="funfact-thanks-form">
+      <textarea id="funfact-thanks-message" placeholder="Share a fun fact about Harshini…" required style="width:80%;font-size:1.1rem;"></textarea><br>
+      <button type="submit" class="btn">Share Fun Fact</button>
+    </form>
+  </div>
 </div>
-
 <!-- ========== Secret Key Page ========== -->
 <div id="birthday-page" class="page">
   <h2>🔑 Enter Secret Key</h2>
@@ -487,7 +556,6 @@ input, textarea {
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
 </div>
 
-
 <!-- ========== Celebration Page ========== -->
 <div id="celebration-page" class="page">
   <h1>☁ Happy Birthday Pichii 💖 ☁</h1>
@@ -495,6 +563,17 @@ input, textarea {
     <div class="fairy-rope"></div>
     <div class="hanging-photos">
       <!-- Hanging polaroids will be injected here -->
+    </div>
+  </div>
+  <div class="cake-container">
+    <svg class="cake-svg" viewBox="0 0 180 120">
+      <ellipse cx="90" cy="100" rx="70" ry="18" fill="#e7c6e7" stroke="#b86ca2" stroke-width="3"/>
+      <rect x="20" y="50" width="140" height="50" rx="20" fill="#b86ca2" stroke="#6353a3" stroke-width="3"/>
+      <ellipse cx="90" cy="50" rx="70" ry="18" fill="#e7c6e7" stroke="#b86ca2" stroke-width="3"/>
+      <g id="cakeCandles"></g>
+    </svg>
+    <div style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.1rem;margin-top:8px;">
+      All your wishes are lighting up the cake!
     </div>
   </div>
   <div class="floating-polaroids">
@@ -506,11 +585,7 @@ input, textarea {
 <!-- ========== Messages Page (storybook) ========== -->
 <div id="messages-page" class="page">
   <h2>📖 Wishes for Harshini</h2>
-
-  <!-- Polaroid Wall -->
   <div id="polaroid-frame"></div>
-
-  <!-- Message Display -->
   <div id="message-content">
     <div class="fairy-lights"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="message-box" id="message-box">
@@ -518,8 +593,6 @@ input, textarea {
       <p id="message-sender" style="font-weight:bold; margin-top:10px;"></p>
     </div>
   </div>
-
-  <!-- Controls -->
   <button class="btn" id="prev-message-btn">Prev</button>
   <button class="btn" id="next-message-btn">Next</button>
   <button class="btn" id="final-btn" style="display:none;">One Last Message 💌</button>
@@ -528,18 +601,14 @@ input, textarea {
 <!-- ========== Special Note Page ========== -->
 <div id="special-note-page" class="page">
   <h2>💫 Special Note</h2>
-
   <div class="special-note-box" id="special-note-box">
     <p id="special-note-text"></p>
     <p id="special-note-sender" style="font-weight:bold; margin-top:10px;"></p>
     <h1>ONCE AGAIN <br>HAPPY BIRTHDAY PICHUU</h1>
   </div>
-
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
 </div>
 
-
-<!-- Firebase SDK (v8 for compatibility) -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script>
@@ -569,11 +638,9 @@ celebrationHangingPics.forEach((src, i) => {
   const polaroid = document.createElement('div');
   polaroid.className = 'hanging-polaroid';
   polaroid.style.animationDelay = (i * 0.7) + 's';
-  // String
   const string = document.createElement('div');
   string.className = 'hanging-string';
   polaroid.appendChild(string);
-  // Image
   const img = document.createElement('img');
   img.src = src;
   polaroid.appendChild(img);
@@ -593,19 +660,17 @@ celebrationFloatingPics.forEach((src, i) => {
   polaroid.appendChild(img);
   floatingPolaroidsDiv.appendChild(polaroid);
 });
+
 // 📸 Polaroid Wall for People Page
 const polaroidPics = [
   'images/pmc1.jpg','images/me1.jpg','images/surv.jpg', 'images/pmc2.jpg','images/subi1.jpg', 'images/pmc3.jpg','images/vid.jpg', 'images/pmc4.jpg', 'images/me2.jpg', 'images/jai.jpg', 'images/fam.jpg', 'images/subi2.jpg'
-  // 👉 replace with your 20 fantasy photos
 ];
 
 const polaroidFrame = document.getElementById('polaroid-frame');
-
 polaroidPics.forEach(src => {
   const div = document.createElement('div');
   div.className = 'polaroid';
   div.style.setProperty('--rotation', (Math.random() * 10 - 5) + 'deg');
-  
   const img = document.createElement('img');
   img.src = src;
   img.onload = () => {
@@ -617,14 +682,69 @@ polaroidPics.forEach(src => {
       img.style.maxHeight = "120px";
     }
   };
-
   div.appendChild(img);
   polaroidFrame.appendChild(div);
 });
 
+// Candle logic: one candle per unique user (name)
+function getUniqueUserCount(callback) {
+  db.collection("wishes").get().then(snap => {
+    const names = new Set();
+    snap.docs.forEach(doc => {
+      const data = doc.data();
+      if (data.name) names.add(data.name.trim().toLowerCase());
+    });
+    callback(names.size);
+  });
+}
+function updateCandleCountDisplay(count) {
+  document.getElementById('candleCount').textContent = count;
+}
+function drawCakeCandles(count) {
+  const cakeCandles = document.getElementById('cakeCandles');
+  cakeCandles.innerHTML = '';
+  if (count === 0) return;
+  const startX = 35, endX = 145;
+  for (let i = 0; i < count; i++) {
+    const x = count === 1 ? 90 : startX + ((endX - startX) / (count - 1 || 1)) * i;
+    cakeCandles.innerHTML += `
+      <rect x="${x-3}" y="38" width="6" height="18" rx="3" fill="#e7c6e7" stroke="#6353a3" stroke-width="1"/>
+      <rect x="${x-1}" y="34" width="2" height="8" fill="#6353a3"/>
+      <ellipse class="cake-candle-flame" cx="${x}" cy="32" rx="3" ry="5" fill="gold"/>
+    `;
+  }
+}
+// Candle SVG click animation
+const candleSVG = document.getElementById('candleSVG');
+const candleFlame = document.getElementById('candleFlame');
+if (candleSVG) {
+  candleSVG.onclick = function() {
+    if (!candleFlame.classList.contains('lit')) {
+      candleFlame.classList.add('lit');
+      setTimeout(() => {
+        candleFlame.classList.remove('lit');
+      }, 1800);
+    }
+  };
+}
 
-document.getElementById('people-btn').onclick = () => showPage('people');
-document.getElementById('birthday-btn').onclick = () => showPage('birthday');
+// Update candle count and cake candles on page load and when needed
+function refreshCandlesEverywhere() {
+  getUniqueUserCount(function(count) {
+    updateCandleCountDisplay(count);
+    drawCakeCandles(count);
+  });
+}
+refreshCandlesEverywhere();
+
+function resetCandleCount() {
+  db.collection("wishes").get().then(() => {
+    document.getElementById('candleCount').textContent = 0;
+    drawCakeCandles(0);
+  });
+}
+
+// Redraw candles when celebration page is shown
 function showPage(pageId) {
   const current = document.querySelector('.page.active');
   if(current) {
@@ -632,33 +752,71 @@ function showPage(pageId) {
     setTimeout(() => {
       current.classList.remove('active', 'turning');
       document.getElementById(pageId + "-page").classList.add('active');
-    }, 500); // animation duration
+      if (pageId === "celebration" || pageId === "thanks") refreshCandlesEverywhere();
+      if (pageId === "thanks") resetCandleCount();
+      if (pageId === "welcome") loadFunFacts();
+    }, 500);
   } else {
     document.getElementById(pageId + "-page").classList.add('active');
+    if (pageId === "celebration" || pageId === "thanks") refreshCandlesEverywhere();
+    if (pageId === "thanks") resetCandleCount();
+    if (pageId === "welcome") loadFunFacts();
   }
 }
 
-
+// Wish form: add wish and refresh candles
 document.getElementById('wish-form').onsubmit = async (e) => {
   e.preventDefault();
   const name = document.getElementById('sender-name').value;
   const message = document.getElementById('birthday-message').value;
   await db.collection("wishes").add({ name, message });
-   const heart = document.createElement('img');
-  heart.src = 'love.png'; // REPLACE with your heart image
-  heart.id = 'heart-stamp';
-  document.getElementById('people-page').appendChild(heart);
-  setTimeout(() => heart.remove(), 1000);
   showPage("thanks");
+  setTimeout(refreshCandlesEverywhere, 1000);
 };
 
-document.getElementById('secret-form').onsubmit = (e) => {
+// Fun Fact form in Thank You page: add fun fact to Firestore (no name)
+document.getElementById('funfact-thanks-form').onsubmit = async (e) => {
   e.preventDefault();
-  const key = document.getElementById('secret-key').value.trim();
-  if(key === "Dr.Harshini") showPage("celebration");
-  else alert("Wrong key!");
+  const funfact = document.getElementById('funfact-thanks-message').value;
+  await db.collection("funfacts").add({ funfact });
+  document.getElementById('funfact-thanks-form').reset();
+  alert("Fun fact shared! Go to the first page to see it sparkle!");
+  loadFunFacts();
 };
 
+// Load fun facts and display as floating sparkles
+function loadFunFacts() {
+  db.collection("funfacts").get().then(snap => {
+    const facts = snap.docs.map(doc => doc.data());
+    const container = document.getElementById('funfact-sparkles-container');
+    container.innerHTML = '';
+    facts.forEach((fact, i) => {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'funfact-sparkle';
+      sparkle.style.left = (10 + Math.random()*80) + '%';
+      sparkle.style.top = (10 + Math.random()*40) + 'px';
+      sparkle.title = "Click for fun fact!";
+      sparkle.innerHTML = "✨";
+      sparkle.onclick = function(e) {
+        e.stopPropagation();
+        showFunFactPopup(fact.funfact);
+      };
+      container.appendChild(sparkle);
+    });
+  });
+}
+
+// Show fun fact popup (no name)
+function showFunFactPopup(fact) {
+  const popup = document.getElementById('funfact-popup');
+  popup.innerHTML = `<div style="margin-bottom:10px;">${fact}</div><br><button class="btn" onclick="closeFunFactPopup()">Close</button>`;
+  popup.classList.add('active');
+}
+function closeFunFactPopup() {
+  document.getElementById('funfact-popup').classList.remove('active');
+}
+
+// Messages logic
 let wishes = [], currentIndex = 0;
 document.getElementById('show-messages-btn').onclick = async () => {
   const snap = await db.collection("wishes").get();
@@ -675,7 +833,6 @@ function displayMessage() {
   document.getElementById('message-sender').textContent = msg ? `– ${msg.name}` : "";
   document.getElementById('final-btn').style.display = (currentIndex === wishes.length - 1) ? "block" : "none";
 }
-
 document.getElementById('prev-message-btn').onclick = () => {
   if(currentIndex > 0) { currentIndex--; displayMessage(); }
 };
@@ -687,7 +844,7 @@ document.getElementById('final-btn').onclick = () => {
   typeWriterEffect(document.getElementById("special-note-text"), "Pichii 💕, The one who keeps the best version of me alive… who always believes in me, supports me, and loves me no matter what. This little girl just hit 20!! 🎉 stepping into adulthood. Crazy right? Feels unreal for me too. You honestly deserve all the happiness and peace this world can give. And you know what? This long distance… it really hit me. Made me realize how incomplete I am without you. Showed me how damn strong our connection actually is. Maybe that’s why God planned this just to make our bond even stronger 💫. In a world full of people who treat me like an option, you’re the one who always made me feel valued, prioritized, and loved. You’re not just my person, you’re my family❤️.Life’s unpredictable anything can happen anytime. Even if someday I’m not around, I know my strong girl will handle everything bravely, smartly, and take care of herself. You’re gonna be that amazing doctor 👩‍⚕️ everyone looks up to. You’ll reach great heights with or without me. I'll be cheering up for you wherever I am. Remember you should never ever doubt your worth and never drop your self-respect for anyone. Doesn’t matter how important they are nobody’s worth that. Keep your head up always, ‘cause you’re too precious for this world ✨. God will always give you best things at the right time, he knows what and when his girl needs something andI've made a special contract with him to give the best to my pichii and protect her. This note is just to remind you that you’re loved, more than you can ever imagine, by so many people. And me? I love you beyond everything… forever and always 💖. ", 50);
 };
 function typeWriterEffect(element, text, speed=50) {
-  element.innerHTML = ""; // clear
+  element.innerHTML = "";
   let i=0;
   function typing() {
     if(i < text.length) {
@@ -710,15 +867,28 @@ function createExtraSparkles() {
     setTimeout(() => s.remove(), 2000);
   }, 400);
 }
-createExtraSparkles();
-const box = document.createElement('div');
-box.className = 'message-box';
-box.innerHTML = `<p>${message}</p><p style="font-weight:bold; margin-top:10px;">– ${name}</p>`;
-document.getElementById('messages-container').appendChild(box);
 
+// Place this at the very end of your <script> tag, after ALL other code
+createExtraSparkles();
+loadFunFacts();
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('start-btn').addEventListener('click', function() {
+    showPage('landing');
+  });
+  document.getElementById('people-btn').addEventListener('click', function() {
+    showPage('people');
+  });
+  document.getElementById('birthday-btn').addEventListener('click', function() {
+    showPage('birthday');
+  });
+  document.getElementById('secret-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const key = document.getElementById('secret-key').value.trim();
+    if(key === "Dr.Harshini") showPage("celebration");
+    else alert("Wrong key!");
+  });
+});
 </script>
-<div class="shooting-star"></div>
-<div class="shooting-star" style="animation-delay:1s; left:60%;"></div>
-<div class="shooting-star" style="animation-delay:2s; left:30%;"></div>
 </body>
 </html>
