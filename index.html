@@ -7,13 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script&display=swap" rel="stylesheet">
 <style>
 :root {
-    --deep-navy: #18153a;
-    --purple: #4c3260;
-    --violet: #6353a3;
-    --mauve: #b86ca2;
-    --pale-lavender: #e7c6e7;
-    --dark-purple: #3a2450;
+  --deep-navy: #7c5646;           /* deep brown tone */
+  --purple: #b6a384;              /* vintage olive accent */
+  --violet: #e6ccc5;              /* blush peach tone */
+  --mauve: #dbb892;               /* warm biscuit */
+  --pale-lavender: #f9f6ef;       /* parchment background */
+  --dark-purple: #5a3b27;         /* soft sepia for text */
 }
+
+/* BASIC SETUP */
 html, body {
   width: 100vw;
   max-width: 100vw;
@@ -22,11 +24,11 @@ html, body {
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  color: var(--pale-lavender);
+  color: var(--dark-purple);
   text-align: center;
   min-height: 100vh;
-  background: url('images/back2.jpeg') center center/cover no-repeat fixed,
-              linear-gradient(135deg, var(--deep-navy) 0%, var(--purple) 40%, var(--violet) 70%, var(--mauve) 90%, var(--pale-lavender) 100%);
+  background: url('images/back.jpg') center center/cover no-repeat fixed,
+              linear-gradient(135deg, var(--pale-lavender) 0%, var(--mauve) 40%, var(--violet) 85%);
   position: relative;
 }
 body::before {
@@ -34,25 +36,22 @@ body::before {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
+  background: radial-gradient(circle at 60% 30%, var(--pale-lavender) 10%, transparent 65%),
+              radial-gradient(circle at 20% 80%, var(--mauve) 10%, transparent 70%);
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle at 60% 30%, var(--pale-lavender) 0%, transparent 60%),
-              radial-gradient(circle at 20% 80%, var(--mauve) 0%, transparent 70%);
-  opacity: 0.5;
 }
+
+/* PAGE */
 .page {
   display: none;
   padding: 20px;
   min-height: 100vh;
-  width: 100%;
-  position: relative;
   background: rgba(255,255,255,0.05);
-  box-sizing: border-box;
-  box-shadow: 0 8px 32px 0 rgba(76,50,96,0.18);
+  box-shadow: 0 8px 32px rgba(90,59,39,0.12);
   border-radius: 18px;
   margin: 0 auto;
-  z-index: 1;
-  overflow-x: hidden;
 }
 .page.active {
   display: block;
@@ -62,281 +61,134 @@ body::before {
   0% { transform: rotateY(90deg); opacity: 0; }
   100% { transform: rotateY(0deg); opacity: 1; }
 }
+
+/* BUTTONS */
 .btn {
   padding: 12px 24px;
   margin: 10px;
-  border: none;
-  border-radius: 12px;
+  border: 1.5px solid var(--mauve);
+  border-radius: 14px;
   font-family: 'Dancing Script', cursive;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   cursor: pointer;
-  background: linear-gradient(45deg, var(--violet), var(--mauve));
-  color: var(--deep-navy);
-  font-weight: bold;
-  text-shadow: 0 1px 8px var(--pale-lavender);
-  box-shadow: 0 4px 8px rgba(24,21,58,0.18);
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--violet);
+  color: var(--dark-purple);
+  box-shadow: 0 3px 8px rgba(90,59,39,0.15);
+  transition: all 0.25s ease-in-out;
 }
 .btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(24,21,58,0.28);
-  background: linear-gradient(45deg, var(--mauve), var(--violet));
-}
-h1,h2 {
-  font-family: 'Dancing Script', cursive;
+  transform: scale(1.04);
+  box-shadow: 0 6px 14px rgba(90,59,39,0.28);
+  background: var(--mauve);
   color: var(--pale-lavender);
-  margin-top: 60px;
-  text-shadow: 0 2px 12px var(--deep-navy), 0 1px 0 var(--mauve);
 }
+
+/* TEXT */
 h1, h2 {
+  font-family: 'Dancing Script', cursive;
+  color: var(--deep-navy);
   margin-top: 60px;
+  text-shadow: 0 2px 10px rgba(255,241,230,0.6);
 }
 p, label, .typewriter {
-  color: var(--pale-lavender);
-  text-shadow: 0 1px 8px var(--deep-navy);
+  color: var(--dark-purple);
+  font-family: 'Playfair Display', serif;
 }
+
+/* INPUTS */
 input, textarea {
+  width: 80%;
   padding: 10px;
   margin: 8px;
-  border: 1px solid var(--violet);
+  border: 1.2px solid var(--mauve);
   border-radius: 10px;
-  width: 80%;
   font-family: 'Dancing Script', cursive;
   font-size: 1.2rem;
   background: var(--pale-lavender);
   color: var(--deep-navy);
 }
-.fairy-lights {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
+input::placeholder, textarea::placeholder {
+  color: var(--purple);
+  opacity: 0.9;
 }
-.fairy-lights span {
-  width: 8px;
-  height: 8px;
-  background: var(--mauve);
-  border-radius: 50%;
-  margin: 0 6px;
-  animation: twinkle 1.5s infinite alternate;
-}
-@keyframes twinkle {
-  from { opacity: 0.2; }
-  to { opacity: 1; }
-}
-.typewriter {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.4rem;
-  white-space: pre-wrap;
-  display: inline-block;
-  border-right: 2px solid var(--purple);
-  animation: blink 0.8s infinite;
-}
-.typewriter span {
-  opacity: 0;
-  display: inline-block;
-  animation: fadeInChar 0.05s forwards;
-}
-@keyframes fadeInChar {
-  to { opacity: 1; }
-}
-@keyframes blink {
-  50% { border-color: transparent; }
-}
+
+/* POLAROID GALLERY */
 #polaroid-frame {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
   justify-items: center;
+  align-items: start;
   margin: 20px auto;
-  width: 95%;
-  max-width: 600px;
-  box-sizing: border-box;
+  width: 90%;
+  max-width: 700px;
 }
 .polaroid {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
-  border: 5px solid var(--mauve);
-  border-radius: 12px;
   background: var(--pale-lavender);
-  color: var(--deep-navy);
-  box-shadow: 0 6px 16px rgba(24,21,58,0.18),
-              0 0 20px rgba(184,108,162,0.18);
-  transform: rotate(var(--rotation, 0deg));
+  border: 4px solid var(--mauve);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(124,86,70,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-.polaroid img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-  height: auto;
-  object-fit: contain;
 }
 .polaroid:hover {
-  transform: scale(1.05) rotate(var(--rotation, 0deg));
-  box-shadow: 0 12px 24px rgba(24,21,58,0.28),
-              0 0 35px rgba(184,108,162,0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(124,86,70,0.25);
 }
-.message-box {
-  max-width: 90%;
-  margin: 20px auto;
-  padding: 18px 22px;
-  background: rgba(231,198,231,0.8);
-  border: 3px solid var(--mauve);
-  border-radius: 16px;
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.2rem;
-  color: var(--dark-purple);
-  line-height: 1.6;
-  text-align: center;
-  box-shadow: 0 6px 18px rgba(24,21,58,0.18),
-              0 0 20px rgba(184,108,162,0.18);
-  position: relative;
-  z-index: 2;
-  box-sizing: border-box;
+.polaroid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
-.message-box::before {
-  content: "✨";
-  font-size: 1.5rem;
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--pale-lavender);
-  padding: 0 6px;
-  border-radius: 50%;
-}
-#messages-page .message-box,
-#messages-page .message-box p,
-#messages-page .message-box #message-text,
-#messages-page .message-box #message-sender {
-  color: #2a1740 !important;
-}
-.special-note-box {
-  background: rgba(231,198,231,0.7);
-  border: 2px solid var(--mauve);
-  border-radius: 15px;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(24,21,58,0.18);
-  font-family: 'Cursive', 'Segoe UI';
-  font-size: 16px;
-  color: var(--purple);
-  box-sizing: border-box;
-}
-.special-note-box p#special-note-text {
-  color: var(--deep-navy);
-  font-weight: 500;
-  text-shadow: 0 1px 6px var(--pale-lavender);
-}
-.candle-option {
-  margin: 30px auto 10px auto;
-  text-align: center;
-}
-.candle-svg {
-  width: 40px;
-  height: 80px;
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-}
-.candle-flame {
-  transition: opacity 0.4s;
-  opacity: 0;
-}
-.candle-flame.lit {
-  opacity: 1;
-  animation: flameFlicker 1s infinite alternate;
-}
-@keyframes flameFlicker {
-  0% { transform: scaleY(1) scaleX(1);}
-  100% { transform: scaleY(1.2) scaleX(0.8);}
-}
-.candle-count {
-  color: var(--violet);
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.1rem;
-  margin-top: 8px;
-}
-.cake-container {
-  margin: 30px auto 10px auto;
-  text-align: center;
-}
-.cake-svg {
-  width: 180px;
-  height: 120px;
-  display: block;
-  margin: 0 auto;
-}
-.cake-candle-flame {
-  opacity: 1;
-  animation: none !important;
-  transition: none !important;
-}
-@media screen and (max-width: 480px) {
-  .cake-svg { width: 120px; height: 80px; }
-}
-.page {
-  background: none;
-}
-.page > * { position: relative; z-index: 1; }
-/* Fairy Lights Row */
+
+/* HANGING POLAROIDS */
 .fairy-lights-row {
   position: relative;
   width: 100%;
   max-width: 700px;
-  margin: 0 auto 40px auto;
-  height: 180px;
-  z-index: 2;
-  box-sizing: border-box;
+  margin: 40px auto;
+  height: 200px;
+  display: flex;
+  justify-content: center;
 }
 .fairy-rope {
   position: absolute;
   top: 40px;
-  left: 0;
-  width: 100%;
+  width: 90%;
   height: 0;
-  border-top: 4px dashed var(--mauve);
-  z-index: 1;
+  border-top: 3px dashed var(--mauve);
+  left: 50%;
+  transform: translateX(-50%);
 }
 .hanging-photos {
   position: absolute;
-  top: 45px;
-  left: 0;
-  width: 100%;
+  top: 42px;
+  width: 90%;
   display: flex;
   justify-content: space-around;
-  z-index: 2;
-  box-sizing: border-box;
 }
 .hanging-polaroid {
-  width: 90px;
-  height: 110px;
+  width: 95px;
+  height: 120px;
   background: var(--pale-lavender);
   border: 3px solid var(--mauve);
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(24,21,58,0.18);
+  box-shadow: 0 2px 8px rgba(124,86,70,0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  animation: swing 3s infinite ease-in-out alternate;
+  animation: swing 3s ease-in-out infinite alternate;
   transform-origin: top center;
-  margin-top: 0;
-  margin-bottom: 0;
-  box-sizing: border-box;
 }
 .hanging-polaroid img {
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 7px;
-  margin-top: 7px;
+  border-radius: 8px;
+  margin-top: 6px;
 }
 .hanging-string {
   width: 2px;
@@ -346,189 +198,194 @@ input, textarea {
   top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 0;
   border-radius: 2px;
 }
 @keyframes swing {
-  0% { transform: rotate(-7deg);}
-  50% { transform: rotate(7deg);}
-  100% { transform: rotate(-7deg);}
+  0% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
 }
-/* Floating Polaroids */
-.floating-polaroids {
-  position: absolute;
-  left: 0; right: 0;
-  top: 220px;
-  width: 100%;
-  pointer-events: none;
-  z-index: 1;
-  box-sizing: border-box;
+
+/* FUN FACTS (SPARKLE POPUPS) */
+.funfact-sparkle {
+  background: radial-gradient(circle at 60% 40%, var(--violet) 60%, var(--purple) 100%);
+  box-shadow: 0 0 16px var(--violet), 0 0 8px var(--mauve);
 }
-.floating-polaroid {
-  position: absolute;
-  width: 80px;
-  height: 90px;
+.funfact-popup {
   background: var(--pale-lavender);
-  border: 2px solid var(--mauve);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(24,21,58,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.85;
-  animation: floatUp 8s linear infinite;
-  will-change: transform;
-  box-sizing: border-box;
+  color: var(--dark-purple);
 }
-.floating-polaroid img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 6px;
+/* Restore fun facts to sparkle behavior (remove box appearance) */
+#funfact-section,
+#funfact-sparkles-container {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) rotate(-10deg) scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translateY(-80px) rotate(10deg) scale(1.07);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-180px) rotate(-8deg) scale(1);
-    opacity: 0;
-  }
+
+#funfact-sparkles-container {
+  position: relative;
+  height: 80px;
+  overflow: visible;
 }
-#thanks-page {
-  color: #2a1740;
-}
-#thanks-page h2,
-#thanks-page p,
-#thanks-page .candle-count,
-#thanks-page .candle-option {
-  color: #2a1740 !important;
-}
-/* Sparkles */
-.sparkle {
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(var(--pale-lavender), var(--mauve));
-  border-radius: 50%;
-  animation: sparkleTwinkle 1.5s infinite alternate;
-  position: absolute;
-  z-index: 10;
-}
-@keyframes sparkleTwinkle {
-  0% { opacity: 0; transform: scale(0.3);}
-  50% { opacity: 1; transform: scale(1);}
-  100% { opacity: 0; transform: scale(0.3);}
-}
-/* Fun Fact Sparkle */
+
 .funfact-sparkle {
   position: absolute;
-  width: 32px;
-  height: 32px;
-  background: radial-gradient(circle at 60% 40%, #b86ca2 60%, #6353a3 100%);
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle at 60% 40%, var(--violet) 55%, var(--purple) 100%);
   border-radius: 50%;
-  box-shadow: 0 0 18px #b86ca2, 0 0 8px #6353a3;
+  box-shadow: 0 0 16px var(--violet), 0 0 8px var(--purple);
+  animation: funfactFloat 6s ease-in-out infinite alternate;
   cursor: pointer;
-  animation: funfactFloat 6s infinite alternate;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  transition: transform 0.2s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 .funfact-sparkle:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 32px #b86ca2, 0 0 16px #6353a3;
+  transform: scale(1.15);
+  box-shadow: 0 0 22px var(--violet), 0 0 12px var(--purple);
 }
+
 @keyframes funfactFloat {
-  0% { transform: translateY(0);}
-  100% { transform: translateY(-30px);}
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(-30px); opacity: 1; }
 }
+
+/* Remove any line display caused by prior fake container */
+#funfact-sparkles-container::before,
+#funfact-sparkles-container::after {
+  content: none !important;
+}
+
+/* Popup configuration remains same */
 .funfact-popup {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  background: #fff;
-  color: #2a1740;
+  background: var(--pale-lavender);
+  color: var(--dark-purple);
   border-radius: 18px;
-  box-shadow: 0 4px 24px #6353a3;
+  box-shadow: 0 4px 24px rgba(90,59,39,0.25);
   padding: 24px 32px;
   font-family: 'Dancing Script', cursive;
   font-size: 1.3rem;
   z-index: 9999;
-  min-width: 220px;
-  max-width: 80vw;
   display: none;
 }
 .funfact-popup.active {
   display: block;
   animation: fadeIn 0.5s;
 }
-@keyframes fadeIn {
-  from { opacity: 0;}
-  to { opacity: 1;}
+
+/* MESSAGE BOXES & SPECIAL NOTES */
+.wish-message-box, .special-note-container {
+  background: rgba(249,246,239,0.92);
+  border: 2px solid var(--mauve);
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(124,86,70,0.1);
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 700px;
+  font-family: 'Dancing Script', cursive;
+  color: var(--dark-purple);
 }
 
-/* Responsive adjustments for mobile screens */
+/* RESPONSIVE */
 @media screen and (max-width: 600px) {
-  .page {
-    padding: 8px;
-    min-height: 100vh;
-    width: 100vw;
-    border-radius: 0;
-    box-shadow: none;
-  }
   #polaroid-frame {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    width: 98vw;
-    max-width: 98vw;
-    margin: 10px auto;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
-  .polaroid {
-    padding: 4px;
-    border-width: 3px;
-    max-width: 98vw;
-  }
-  .polaroid img {
-    max-width: 90vw;
-    max-height: 120px;
-  }
-  .fairy-lights-row {
-    max-width: 98vw;
-    height: 120px;
-  }
-  .hanging-polaroid {
-    width: 60px;
-    height: 70px;
-  }
-  .hanging-polaroid img {
-    width: 50px;
-    height: 50px;
-    margin-top: 4px;
-  }
-  .floating-polaroid {
-    width: 55px;
-    height: 65px;
-  }
-  .floating-polaroid img {
-    width: 45px;
-    height: 45px;
-  }
-  .cake-svg {
-    width: 120px;
-    height: 80px;
-  }
-  #funfact-sparkles-container {
-    min-height: 50px;
-    height: 50px;
-  }
+  .hanging-polaroid { width: 70px; height: 85px; }
+  .hanging-polaroid img { width: 60px; height: 70px; }
 }
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Limits all direct content width so it fits the “paper” region */
+body > *, .page, .wish-message-box, .special-note-container, .message-box {
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Scale all images down and make sure they don’t overflow */
+img, svg {
+  max-width: 98%;
+  height: auto;
+  display: block;
+  margin: 8px auto;
+}
+
+/* Center and scale all button and form elements */
+.btn, input, textarea {
+  font-size: 1rem !important;
+  padding: 8px 16px !important;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Reduce frame, grid, and gallery width */
+#polaroid-frame,
+.hanging-photos,
+.fairy-lights-row,
+#funfact-sparkles-container {
+  max-width: 370px !important;
+  width: 94vw !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Restrict polaroid/box size so everything fits well */
+.polaroid,
+.hanging-polaroid {
+  max-width: 105px !important;
+  min-width: 70px;
+  margin: 8px auto;
+}
+
+/* Make sure all content is centered */
+h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+#polaroid-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+
+.heart-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: -12px; /* gentle overlap for collage look */
+}
+
+.heart-row img {
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 7px rgba(70,50,20,0.14);
+  background: #fff9;
+  border: 2px solid rgba(255,255,255,0.64);
+  opacity: 0.97; /* for a light effect */
+}
+
+/* Sizing by type */
+.heart-row img.portrait   { width: 54px; height: 74px; }
+.heart-row img.landscape  { width: 87px; height: 48px; }
+.heart-row img.square     { width: 62px; height: 62px; }
+
+
 </style>
 </head>
 <body>
@@ -541,13 +398,9 @@ input, textarea {
   <div class="fairy-lights" style="margin:30px 0;">
     <span></span><span></span><span></span><span></span><span></span>
   </div>
-  <p style="font-size:1.3rem; color:var(--pale-lavender); margin-bottom:40px; text-shadow:0 1px 8px var(--deep-navy);">
-    Step into a magical world of wishes, memories, and love.<br>
-    Click below to begin your journey!
-  </p>
   <div id="funfact-section" style="margin:40px 0 0 0;">
     <h2 style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.4rem;">
-      Wanna know some fun facts about Harshini? Click the sparkles!
+      Wanna know some fun facts about Harshini?
     </h2>
     <div id="funfact-sparkles-container" style="position:relative;min-height:80px;height:80px;width:100%;margin:20px 0;"></div>
   </div>
@@ -577,20 +430,9 @@ input, textarea {
 <div id="thanks-page" class="page">
   <h2>Thanks for your wish ❤</h2>
   <p>(Diary closes 💌)</p>
-  <div class="candle-option">
-    <div id="candleArea">
-      <svg class="candle-svg" id="candleSVG" viewBox="0 0 40 80">
-        <rect x="15" y="30" width="10" height="40" rx="5" fill="#e7c6e7" stroke="#b86ca2" stroke-width="2"/>
-        <rect x="19" y="25" width="2" height="8" fill="#6353a3"/>
-        <ellipse id="candleFlame" class="candle-flame" cx="20" cy="22" rx="5" ry="8" fill="gold" />
-      </svg>
-    </div>
-    <div class="candle-count" id="candleCountText">Candles lighted: <span id="candleCount">0</span></div>
-    <div style="color:#2a1740;font-size:1rem;margin-top:8px;">
-      Light the candle to send your wish!
-    </div>
-    <button class="btn" onclick="showPage('landing')">Back Home</button>
-  </div>
+  
+    <!-- changed: Back Home should go to the very first page (welcome) -->
+    <button class="btn" onclick="showPage('welcome')">Back Home</button>
   <!-- Ask for fun fact after lighting the candle -->
   <div id="funfact-thanks-section" style="margin:30px 0;">
     <h3 style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.2rem;">
@@ -614,26 +456,12 @@ input, textarea {
 
 <!-- ========== Celebration Page ========== -->
 <div id="celebration-page" class="page">
-  <h1>☁ Happy Birthday Pichii 💖 ☁</h1>
+  <h1>☁ Happy Birthday Pichii ☁</h1>
   <div class="fairy-lights-row">
     <div class="fairy-rope"></div>
     <div class="hanging-photos">
       <!-- Hanging polaroids will be injected here -->
     </div>
-  </div>
-  <div class="cake-container">
-    <svg class="cake-svg" viewBox="0 0 180 120">
-      <ellipse cx="90" cy="100" rx="70" ry="18" fill="#e7c6e7" stroke="#b86ca2" stroke-width="3"/>
-      <rect x="20" y="50" width="140" height="50" rx="20" fill="#b86ca2" stroke="#6353a3" stroke-width="3"/>
-      <ellipse cx="90" cy="50" rx="70" ry="18" fill="#e7c6e7" stroke="#b86ca2" stroke-width="3"/>
-      <g id="cakeCandles"></g>
-    </svg>
-    <div style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.1rem;margin-top:8px;">
-      All your wishes are lighting up the cake!
-    </div>
-  </div>
-  <div class="floating-polaroids">
-    <!-- Floating polaroids will be injected here -->
   </div>
   <button class="btn" id="show-messages-btn">Here are some messages from your loved ones ✨</button>
 </div>
@@ -641,13 +469,37 @@ input, textarea {
 <!-- ========== Messages Page (storybook) ========== -->
 <div id="messages-page" class="page">
   <h2>📖 Wishes for Harshini</h2>
-  <div id="polaroid-frame"></div>
+  <div id="polaroid-frame">
+  <div class="heart-row">
+    <img src="images/pmc1.jpg" class="portrait">
+    <img src="images/me1.jpg" class="portrait">
+  </div>
+  <div class="heart-row">
+    <img src="images/pmc2.jpg" class="square">
+    <img src="images/subi2.jpg" class="square">
+    <img src="images/surv.jpg" class="portrait">
+  </div>
+  <div class="heart-row">
+    <img src="images/vid.jpg" class="portrait">
+    <img src="images/pmc3.jpg" class="portrait">
+    <img src="images/jai.jpg" class="portrait">
+    <img src="images/subi1.jpg" class="square">
+  </div>
+  <div class="heart-row">
+    <img src="images/pmc4.jpg" class="landscape">
+    <img src="images/fam.jpg" class="landscape">
+  </div>
+  <div class="heart-row">
+    <img src="images/me2.jpg" class="portrait">
+  </div>
+</div>
+
   <div id="message-content">
     <div class="fairy-lights"><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="message-box" id="message-box">
-      <p id="message-text"></p>
-      <p id="message-sender" style="font-weight:bold; margin-top:10px;"></p>
-    </div>
+    <div class="wish-message-box" id="message-box">
+  <p id="message-text"></p>
+  <p id="message-sender" style="font-weight:bold;"></p>
+</div>
   </div>
   <button class="btn" id="prev-message-btn">Prev</button>
   <button class="btn" id="next-message-btn">Next</button>
@@ -657,11 +509,11 @@ input, textarea {
 <!-- ========== Special Note Page ========== -->
 <div id="special-note-page" class="page">
   <h2>💫 Special Note</h2>
-  <div class="special-note-box" id="special-note-box">
-    <p id="special-note-text"></p>
-    <p id="special-note-sender" style="font-weight:bold; margin-top:10px;"></p>
-    <h1>ONCE AGAIN <br>HAPPY BIRTHDAY PICHUU</h1>
-  </div>
+  <div class="special-note-container" id="special-note-box">
+  <p id="special-note-text"></p>
+  <p id="special-note-sender" style="font-weight:bold; margin-top:10px;"></p>
+  <h1>ONCE AGAIN <br>HAPPY BIRTHDAY PICHUU 🎉</h1>
+</div>
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
 </div>
 
@@ -683,9 +535,6 @@ const db = firebase.firestore();
 const celebrationHangingPics = [
   'images/fro1.jpg','images/fro2.jpg','images/fro3.jpg','images/fro4.jpg','images/fro5.jpg'
 ];
-const celebrationFloatingPics = [
-  'images/ba1.jpg','images/ba3.jpg','images/ba5.jpg','images/ba4.jpg','images/ba2.jpg'
-];
 
 // Hanging Polaroids
 const hangingPhotosDiv = document.querySelector('#celebration-page .hanging-photos');
@@ -702,104 +551,6 @@ celebrationHangingPics.forEach((src, i) => {
   polaroid.appendChild(img);
   hangingPhotosDiv.appendChild(polaroid);
 });
-
-// Floating Polaroids
-const floatingPolaroidsDiv = document.querySelector('#celebration-page .floating-polaroids');
-floatingPolaroidsDiv.innerHTML = '';
-celebrationFloatingPics.forEach((src, i) => {
-  const polaroid = document.createElement('div');
-  polaroid.className = 'floating-polaroid';
-  polaroid.style.left = (10 + i*18) + '%';
-  polaroid.style.animationDelay = (i * 2) + 's';
-  const img = document.createElement('img');
-  img.src = src;
-  polaroid.appendChild(img);
-  floatingPolaroidsDiv.appendChild(polaroid);
-});
-
-// 📸 Polaroid Wall for People Page
-const polaroidPics = [
-  'images/pmc1.jpg','images/me1.jpg','images/surv.jpg', 'images/pmc2.jpg','images/subi1.jpg', 'images/pmc3.jpg','images/vid.jpg', 'images/pmc4.jpg', 'images/me2.jpg', 'images/jai.jpg', 'images/fam.jpg', 'images/subi2.jpg'
-];
-
-const polaroidFrame = document.getElementById('polaroid-frame');
-polaroidPics.forEach(src => {
-  const div = document.createElement('div');
-  div.className = 'polaroid';
-  div.style.setProperty('--rotation', (Math.random() * 10 - 5) + 'deg');
-  const img = document.createElement('img');
-  img.src = src;
-  img.onload = () => {
-    if (img.naturalWidth > img.naturalHeight) {
-      img.style.maxWidth = "120px";
-      img.style.maxHeight = "90px";
-    } else {
-      img.style.maxWidth = "90px";
-      img.style.maxHeight = "120px";
-    }
-  };
-  div.appendChild(img);
-  polaroidFrame.appendChild(div);
-});
-
-// Candle logic: one candle per unique user (name)
-function getUniqueUserCount(callback) {
-  db.collection("wishes").get().then(snap => {
-    const names = new Set();
-    snap.docs.forEach(doc => {
-      const data = doc.data();
-      if (data.name) names.add(data.name.trim().toLowerCase());
-    });
-    callback(names.size);
-  });
-}
-function updateCandleCountDisplay(count) {
-  document.getElementById('candleCount').textContent = count;
-}
-function drawCakeCandles(count) {
-  const cakeCandles = document.getElementById('cakeCandles');
-  cakeCandles.innerHTML = '';
-  if (count === 0) return;
-  const startX = 35, endX = 145;
-  for (let i = 0; i < count; i++) {
-    const x = count === 1 ? 90 : startX + ((endX - startX) / (count - 1 || 1)) * i;
-    cakeCandles.innerHTML += `
-      <rect x="${x-3}" y="38" width="6" height="18" rx="3" fill="#e7c6e7" stroke="#6353a3" stroke-width="1"/>
-      <rect x="${x-1}" y="34" width="2" height="8" fill="#6353a3"/>
-      <ellipse class="cake-candle-flame" cx="${x}" cy="32" rx="3" ry="5" fill="gold"/>
-    `;
-  }
-}
-// Candle SVG click animation
-const candleSVG = document.getElementById('candleSVG');
-const candleFlame = document.getElementById('candleFlame');
-if (candleSVG) {
-  candleSVG.onclick = function() {
-    if (!candleFlame.classList.contains('lit')) {
-      candleFlame.classList.add('lit');
-      setTimeout(() => {
-        candleFlame.classList.remove('lit');
-      }, 1800);
-    }
-  };
-}
-
-// Update candle count and cake candles on page load and when needed
-function refreshCandlesEverywhere() {
-  getUniqueUserCount(function(count) {
-    updateCandleCountDisplay(count);
-    drawCakeCandles(count);
-  });
-}
-refreshCandlesEverywhere();
-
-function resetCandleCount() {
-  db.collection("wishes").get().then(() => {
-    document.getElementById('candleCount').textContent = 0;
-    drawCakeCandles(0);
-  });
-}
-
 // Redraw candles when celebration page is shown
 function showPage(pageId) {
   const current = document.querySelector('.page.active');
@@ -808,13 +559,13 @@ function showPage(pageId) {
     setTimeout(() => {
       current.classList.remove('active', 'turning');
       document.getElementById(pageId + "-page").classList.add('active');
-      if (pageId === "celebration" || pageId === "thanks") refreshCandlesEverywhere();
-      if (pageId === "thanks") resetCandleCount();
+      if (pageId === "celebration" || pageId === "thanks");
+      if (pageId === "thanks");
       if (pageId === "welcome") loadFunFacts();
     }, 500);
   } else {
     document.getElementById(pageId + "-page").classList.add('active');
-    if (pageId === "celebration" || pageId === "thanks") refreshCandlesEverywhere();
+    if (pageId === "celebration" || pageId === "thanks");
     if (pageId === "thanks") resetCandleCount();
     if (pageId === "welcome") loadFunFacts();
   }
@@ -827,7 +578,6 @@ document.getElementById('wish-form').onsubmit = async (e) => {
   const message = document.getElementById('birthday-message').value;
   await db.collection("wishes").add({ name, message });
   showPage("thanks");
-  setTimeout(refreshCandlesEverywhere, 1000);
 };
 
 // Fun Fact form in Thank You page: add fun fact to Firestore (no name)
