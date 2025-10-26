@@ -385,13 +385,45 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
 .heart-row img.landscape  { width: 87px; height: 48px; }
 .heart-row img.square     { width: 62px; height: 62px; }
 
+.page-center-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical center */
+  align-items: center;      /* horizontal center */
+  min-height: 75vh;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+#welcome-page .page-center-wrapper {
+  height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center */
+  align-items: center;     /* horizontally center */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+#funfact-section h2 {
+  margin-top: -15px; /* move upwards by 15px, adjust as needed */
+  margin-bottom: 10px; /* optional spacing below */
+}
+
+#welcome-page h1 {
+  font-size: 1.8rem; /* reduce from 2rem/2.5rem */
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
 
 </style>
 </head>
-<body>
+<html>
 
 <!-- ========== Welcome Page ========== -->
 <div id="welcome-page" class="page active">
+  <div class="page-center-wrapper">
   <h1 style="margin-top:30px; font-size:2.5rem; color:var(--pale-lavender); text-shadow:0 2px 24px var(--deep-navy);">
     ✨ Welcome to the Birthday Celebration of Harshini ✨
   </h1>
@@ -407,27 +439,32 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
   <button class="btn" id="start-btn">Begin</button>
   <div id="funfact-popup" class="funfact-popup"></div>
 </div>
-
+</div>
 <!-- ========== Landing Page ========== -->
 <div id="landing-page" class="page">
-  <h1>📖 Choose Your Path</h1>
+  <div class="page-center-wrapper">
+    <h1>📖 Choose Your Path</h1>
   <button class="btn" id="people-btn">People of Harshini 👯</button>
   <button class="btn" id="birthday-btn">Birthday Baby 🎂</button>
+  </div>
 </div>
 
 <!-- ========== People Page ========== -->
 <div id="people-page" class="page">
-  <h2>📔 Lovingly Tale</h2>
+  <div class="page-center-wrapper">
+    <h2>📔 Lovingly Tale</h2>
   <form id="wish-form">
     <input id="sender-name" placeholder="Your Name" required><br>
     <textarea id="birthday-message" placeholder="Write your wishes here…" required></textarea><br>
     <button type="submit" class="btn">Send Wish</button>
   </form>
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
+  </div>
 </div>
 
 <!-- ========== Thank You Page ========== -->
 <div id="thanks-page" class="page">
+  <div class="page-center-wrapper">
   <h2>Thanks for your wish ❤</h2>
   <p>(Diary closes 💌)</p>
   
@@ -444,8 +481,10 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
     </form>
   </div>
 </div>
+</div>
 <!-- ========== Secret Key Page ========== -->
 <div id="birthday-page" class="page">
+  <div class="page-center-wrapper">
   <h2>🔑 Enter Secret Key</h2>
   <form id="secret-form">
     <input id="secret-key" placeholder="Secret Key"><br>
@@ -453,9 +492,10 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
   </form>
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
 </div>
-
+</div>
 <!-- ========== Celebration Page ========== -->
 <div id="celebration-page" class="page">
+  <div class="page-center-wrapper">
   <h1>☁ Happy Birthday Pichii ☁</h1>
   <div class="fairy-lights-row">
     <div class="fairy-rope"></div>
@@ -465,7 +505,7 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
   </div>
   <button class="btn" id="show-messages-btn">Here are some messages from your loved ones ✨</button>
 </div>
-
+</div>
 <!-- ========== Messages Page (storybook) ========== -->
 <div id="messages-page" class="page">
   <h2>📖 Wishes for Harshini</h2>
@@ -508,6 +548,7 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
 
 <!-- ========== Special Note Page ========== -->
 <div id="special-note-page" class="page">
+    <div class="page-center-wrapper">
   <h2>💫 Special Note</h2>
   <div class="special-note-container" id="special-note-box">
   <p id="special-note-text"></p>
@@ -516,7 +557,7 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
 </div>
   <button class="btn" type="button" onclick="showPage('landing')">Back</button>
 </div>
-
+</div>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script>
