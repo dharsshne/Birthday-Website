@@ -22,14 +22,11 @@ html, body {
   overflow-x: hidden;
 }
 body {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
-  color: var(--dark-purple);
-  text-align: center;
-  min-height: 100vh;
-  background: url('images/back.jpg') center center/cover no-repeat fixed,
-              linear-gradient(135deg, var(--pale-lavender) 0%, var(--mauve) 40%, var(--violet) 85%);
-  position: relative;
+  background-image: url('images/back.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 body::before {
   content: "";
@@ -385,46 +382,83 @@ h1, h2, h3, p, label, .typewriter, form, .page, #message-content {
 .heart-row img.landscape  { width: 87px; height: 48px; }
 .heart-row img.square     { width: 62px; height: 62px; }
 
+@media (max-width: 600px) {
+  body {
+    background-position: center center;
+    background-size: contain;
+    background-attachment: scroll;
+  }
+}
+.page-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+  min-height: 75vh;
+  padding: 20px;
+  text-align: center;
+}
+
+#welcome-page h1 {
+  font-size: 2rem; /* smaller than before */
+  margin: 0 0 20px 0;
+}
+
+#landing-page h1,
+#people-page h2 {
+  font-size: 1.8rem;
+  margin: 0 0 20px 0;
+}
+
+/* Center all content vertically and horizontally inside .page */
 
 </style>
 </head>
 <body>
 
 <!-- ========== Welcome Page ========== -->
+<!-- Welcome Page -->
 <div id="welcome-page" class="page active">
-  <h1 style="margin-top:30px; font-size:2.5rem; color:var(--pale-lavender); text-shadow:0 2px 24px var(--deep-navy);">
-    ✨ Welcome to the Birthday Celebration of Harshini ✨
-  </h1>
-  <div class="fairy-lights" style="margin:30px 0;">
-    <span></span><span></span><span></span><span></span><span></span>
+  <div class="page-content-wrapper">
+    <h1 style="margin-top:30px; font-size:2rem; color:var(--pale-lavender); text-shadow:0 2px 24px var(--deep-navy);">
+      ✨ Welcome to the Birthday Celebration of Harshini ✨
+    </h1>
+    <div class="fairy-lights" style="margin:30px 0;">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div id="funfact-section" style="margin:40px 0 0 0;">
+      <h2 style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.4rem;">
+        Wanna know some fun facts about Harshini?
+      </h2>
+      <div id="funfact-sparkles-container" style="position:relative;min-height:80px;height:80px;width:100%;margin:20px 0;"></div>
+    </div>
+    <button class="btn" id="start-btn">Begin</button>
+    <div id="funfact-popup" class="funfact-popup"></div>
   </div>
-  <div id="funfact-section" style="margin:40px 0 0 0;">
-    <h2 style="color:#2a1740;font-family:'Dancing Script',cursive;font-size:1.4rem;">
-      Wanna know some fun facts about Harshini?
-    </h2>
-    <div id="funfact-sparkles-container" style="position:relative;min-height:80px;height:80px;width:100%;margin:20px 0;"></div>
-  </div>
-  <button class="btn" id="start-btn">Begin</button>
-  <div id="funfact-popup" class="funfact-popup"></div>
 </div>
 
-<!-- ========== Landing Page ========== -->
+<!-- Landing Page -->
 <div id="landing-page" class="page">
-  <h1>📖 Choose Your Path</h1>
-  <button class="btn" id="people-btn">People of Harshini 👯</button>
-  <button class="btn" id="birthday-btn">Birthday Baby 🎂</button>
+  <div class="page-content-wrapper">
+    <h1>📖 Choose Your Path</h1>
+    <button class="btn" id="people-btn">People of Harshini 👯</button>
+    <button class="btn" id="birthday-btn">Birthday Baby 🎂</button>
+  </div>
 </div>
 
-<!-- ========== People Page ========== -->
+<!-- People Page -->
 <div id="people-page" class="page">
-  <h2>📔 Lovingly Tale</h2>
-  <form id="wish-form">
-    <input id="sender-name" placeholder="Your Name" required><br>
-    <textarea id="birthday-message" placeholder="Write your wishes here…" required></textarea><br>
-    <button type="submit" class="btn">Send Wish</button>
-  </form>
-  <button class="btn" type="button" onclick="showPage('landing')">Back</button>
+  <div class="page-content-wrapper">
+    <h2>📔 Lovingly Tale</h2>
+    <form id="wish-form">
+      <input id="sender-name" placeholder="Your Name" required><br>
+      <textarea id="birthday-message" placeholder="Write your wishes here…" required></textarea><br>
+      <button type="submit" class="btn">Send Wish</button>
+    </form>
+    <button class="btn" type="button" onclick="showPage('landing')">Back</button>
+  </div>
 </div>
+
 
 <!-- ========== Thank You Page ========== -->
 <div id="thanks-page" class="page">
